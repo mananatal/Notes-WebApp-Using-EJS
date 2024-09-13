@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="bg-zinc-900 h-screen w-screen overflow-x-hidden">
+        <div class="mt-6 ml-6 text-xl font-bold">
+            <h1 class="text-white">Create Note</h1>
+            <form class="mt-4 flex flex-col space-y-4 max-w-[75%]" action="/create" method="post">
+                <input
+                    name="title"
+                    id="title"
+                    placeholder="Enter Title Here"
+                    class="bg-zinc-700 p-2 text-white rounded-md"
+                />
+                <textarea
+                    name="description"
+                    id="description"
+                    placeholder="Enter Description Here"
+                    class="bg-zinc-700 p-2 text-white resize-none overflow-hidden rounded-md"
+                    rows="4"
+                    cols="30"
+                ></textarea>
+                <button type="submit" class="bg-blue-600 py-1 px-3 w-fit rounded-md ">Submit</button>
+            </form>
+        </div>
+
+
+        <div class="mt-6 text-white">
+            <p class="text-xl font-bold p-6">Your Tasks</p>
+
+            <%if(files.length==0){ %>
+                <p class="-mt-2 ml-6 text-zinc-300">No Tasks Found</p>
+            <% } else{ %>
+                <div class="ml-6 grid grid-cols-4 gap-4">
+                    <%files.forEach((file)=>{ %>                       
+                            <div class="w-72 bg-zinc-700 pt-2 pl-4 pr-4 pb-2">
+                                <h2><%=file%></h2>
+                                <div class="flex justify-between items-center">
+                                    <a class="text-blue-600" href="/info/<%=file%>">Read More</a>
+                                    <a class="text-red-700" href="/delete/<%=file%>">Delete</a>
+                                </div>
+                            </div>                        
+                    <% }) %>   
+                </div>                             
+            <% } %>
+            
+        </div>
+
+
+    </div>
+    
+</body>
+</html>
